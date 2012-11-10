@@ -2,7 +2,7 @@ Feature: Basic use of Yarjuf
   As a tester
   In order to be able to get junit formatted results from rspec
   I want to be able to use yarjuf
-  
+
   Background:
     Given a file named "spec/basic_spec.rb" with:
       """
