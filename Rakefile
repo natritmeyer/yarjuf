@@ -5,6 +5,10 @@ namespace :cuke do
   Cucumber::Rake::Task.new(:all) do |t|
     t.cucumber_opts = "--format pretty"
   end
+
+  Cucumber::Rake::Task.new(:wip) do |t|
+    t.cucumber_opts = "--format pretty -t @wip"
+  end
 end
 
 namespace :spec do
