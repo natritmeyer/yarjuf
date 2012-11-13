@@ -4,16 +4,16 @@ _Yet Another RSpec JUnit Formatter_
 
 ## TL;DR
 
-1. Install yarjuf:]
+* Install yarjuf:
 
 `gem install yarjuf`
 
-2. Add the following to your `spec/spec_helper.rb`:
+* Add the following to your `spec/spec_helper.rb`:
 
 ```ruby
 require 'yarjuf'
 ```
-3. Execute your tests:
+* Execute your tests:
 
 `rspec -f JUnit -o results.xml`
 
