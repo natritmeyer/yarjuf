@@ -56,7 +56,11 @@ class JUnit < RSpec::Core::Formatters::BaseFormatter
         builder.testsuite :name => suite_name, :tests => tests.size, :errors => 0, :failures => fail_count_for_suite(tests), :skipped => skipped_count_for_suite(tests) do
           builder.properties
           tests.each do |test|
-            builder.testcase :name => test.metadata[:full_description], :time => test.metadata[:execution_result][:run_time]
+            builder.testcase :name => test.metadata[:full_description], :time => test.metadata[:execution_result][:run_time] do
+              case test.metadata[:execution_result][:status]
+                when "pending" then builder.skipped
+              end
+            end
           end
         end
       end

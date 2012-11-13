@@ -47,3 +47,15 @@ Feature: Individual Tests
     When I run `rspec spec/test_duration_spec.rb -r ../../lib/yarjuf -f JUnit -o results.xml`
     Then the junit output file contains a test with a duration
 
+  Scenario: Pending test
+    Given a file named "spec/pending_test_spec.rb" with:
+      """
+      describe "suite one" do
+        it "should be pending" do
+          pending
+        end
+      end
+      """
+    When I run `rspec spec/pending_test_spec.rb -r ../../lib/yarjuf -f JUnit -o results.xml`
+    Then the junit output file contains a pending test
+

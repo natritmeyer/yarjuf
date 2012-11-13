@@ -13,3 +13,8 @@ Then /^the junit output file contains a test with a duration$/ do
   @results.at_xpath("/testsuites/testsuite/testcase/@time").value.should match /[.0-9]+/
 end
 
+Then /^the junit output file contains a pending test$/ do
+  step 'I parse the junit results file'
+  @results.at_xpath("/testsuites/testsuite/testcase/skipped").should_not be_nil
+end
+
