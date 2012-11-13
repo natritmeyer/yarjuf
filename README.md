@@ -93,3 +93,10 @@ result report' option in the Jenkins task configuration page and in the
 formatted results to be written to, ie: the file path and name specified
 in the `-o` option above.
 
+## Acknowledgements
+
+* Thanks to @adeoke for suggesting a slightly less sucky gem name than the
+one I originally came up with
+* Thanks to @dchamb84 for helping me debug the original hack
+* Thanks to @nathanbain for spurring me on to write the original hack
+
