@@ -95,8 +95,8 @@ in the `-o` option above.
 
 ## Acknowledgements
 
-* Thanks to @adeoke for suggesting a slightly less sucky gem name than the
+* Thanks to [@adeoke](https://github.com/adeoke) for suggesting a slightly less sucky gem name than the
 one I originally came up with
-* Thanks to @dchamb84 for helping me debug the original hack
-* Thanks to @nathanbain for spurring me on to write the original hack
+* Thanks to [@dchamb84](https://github.com/dchamb84) for helping me debug the original hack
+* Thanks to [@nathanbain](https://github.com/nathanbain) for spurring me on to write the original hack
 
