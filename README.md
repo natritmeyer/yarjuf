@@ -32,7 +32,7 @@ Before you can use yarjuf, RSpec needs to know about it. The best way to
 do that is to use the functionality that RSpec provides to load
 libraries. 
 
-#### `.rspec` file
+#### Modifying the `.rspec` file
 
 When RSpec executes, it looks for a file in the current working
 directory (project root) called `.rspec` that contains rspec
@@ -43,7 +43,7 @@ configuration. It is a good idea to add the following to it:
 Doing so will make sure that the `spec/spec_helper.rb` file will get
 required when RSpec starts.
 
-#### `spec/spec_helper.rb` file
+#### Modifying the `spec/spec_helper.rb` file
 
 Add the following to your `spec/spec_helper.rb`:
 
