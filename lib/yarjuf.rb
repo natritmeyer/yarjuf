@@ -40,6 +40,11 @@ class JUnit < RSpec::Core::Formatters::BaseFormatter
     group_hierarchy
   end
 
+  def failure_details_for(example)
+    exception = example.metadata[:execution_result][:exception]
+    exception.nil? ? "" : "#{exception.message}\n#{format_backtrace(exception.backtrace, example).join("\n")}"
+  end
+
   def fail_count_for_suite(suite)
     suite.select {|example| example.metadata[:execution_result][:status] == "failed"}.size
   end
@@ -58,14 +63,18 @@ class JUnit < RSpec::Core::Formatters::BaseFormatter
           tests.each do |test|
             builder.testcase :name => test.metadata[:full_description], :time => test.metadata[:execution_result][:run_time] do
               case test.metadata[:execution_result][:status]
-                when "pending" then builder.skipped
+              when "pending" then builder.skipped
+              when "failed"
+                builder.failure :message => "failed #{test.metadata[:full_description]}", :type => "failed" do
+                  builder.cdata! failure_details_for test
+                end
               end
             end
           end
         end
       end
     end
-    output.puts builder.target!
+  output.puts builder.target!
   end
 end
 

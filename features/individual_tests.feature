@@ -59,3 +59,15 @@ Feature: Individual Tests
     When I run `rspec spec/pending_test_spec.rb -r ../../lib/yarjuf -f JUnit -o results.xml`
     Then the junit output file contains a pending test
 
+  Scenario: Failing test
+    Given a file named "spec/failing_test_spec.rb" with:
+      """
+      describe "suite one" do
+        it "should be failing" do
+          1.should == 2
+        end
+      end
+      """
+    When I run `rspec spec/failing_test_spec.rb -r ../../lib/yarjuf -f JUnit -o results.xml`
+    Then the junit output file contains a failing test
+
