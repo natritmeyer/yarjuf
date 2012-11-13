@@ -45,7 +45,7 @@ class JUnit < RSpec::Core::Formatters::BaseFormatter
     builder.instruct! :xml, :version => "1.0", :encoding => "UTF-8"
     builder.testsuites :errors => 0, :failures => failure_count, :skipped => pending_count, :tests => example_count, :time => duration, :timestamp => Time.now.iso8601 do
       @test_suite_results.each do |suite_name, tests|
-        builder.testsuite :name => suite_name
+        builder.testsuite :name => suite_name, :tests => tests.size
       end
     end
     output.puts builder.target!
