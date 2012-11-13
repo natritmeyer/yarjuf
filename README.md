@@ -6,8 +6,9 @@ _Yet Another RSpec JUnit Formatter_
 
 I've never found a gem that can be relied on to generate JUnit
 output from [RSpec](https://www.relishapp.com/rspec/rspec-core/docs). Previously, I'd cobbled together a [formatter](http://www.natontesting.com/2012/05/25/rspec-junit-formatter-for-jenkins/) that worked for me for a couple of years and seems to have proved
-useful to others. But it was a hack and thought I'd rewrite it
-and make it distributable as a gem. Thus: [yet-another-rspec-junit-formatter](https://github.com/natritmeyer/yarjuf)
+useful to others. But it was a hack and thought I'd rewrite it, make it
+conform to the JUnit format spec a bit better, and make it
+distributable as a gem. Thus: [yet-another-rspec-junit-formatter](https://github.com/natritmeyer/yarjuf)
 
 ## Installation
 
