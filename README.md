@@ -2,21 +2,6 @@
 
 _Yet Another RSpec JUnit Formatter_
 
-## TL;DR
-
-* Install yarjuf:
-
-`gem install yarjuf`
-
-* Add the following to your `spec/spec_helper.rb`:
-
-```ruby
-require 'yarjuf'
-```
-* Execute your tests:
-
-`rspec -f JUnit -o results.xml`
-
 ## Intro
 
 I've never found a gem I can rely on that I can use to generate JUnit
