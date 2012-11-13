@@ -15,7 +15,7 @@ Feature: Suite Summary
     When I run `rspec spec/suite_element_spec.rb -r ../../lib/yarjuf -f JUnit -o results.xml`
     Then the junit output contains the testsuite element
 
-    Scenario: One passing test
+  Scenario: One passing test
     Given a file named "spec/one_passing_test_spec.rb" with:
       """
       describe "suite level details for 1 passing test" do
@@ -27,7 +27,7 @@ Feature: Suite Summary
     When I run `rspec spec/one_passing_test_spec.rb -r ../../lib/yarjuf -f JUnit -o results.xml`
     Then the junit output reports one passing test
 
-    Scenario: One failing test
+  Scenario: One failing test
     Given a file named "spec/one_failing_test_spec.rb" with:
       """
       describe "suite level details for 1 failing test" do
