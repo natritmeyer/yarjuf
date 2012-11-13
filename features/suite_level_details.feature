@@ -39,3 +39,39 @@ Feature: Suite Summary
     When I run `rspec spec/one_failing_test_spec.rb -r ../../lib/yarjuf -f JUnit -o results.xml`
     Then the junit output reports one failing test
 
+  Scenario: One pending test
+    Given a file named "spec/one_pending_test_spec.rb" with:
+      """
+      describe "suite level details for 1 pending test" do
+        it "should be pending" do
+          pending
+        end
+      end
+      """
+    When I run `rspec spec/one_pending_test_spec.rb -r ../../lib/yarjuf -f JUnit -o results.xml`
+    Then the junit output reports one pending test
+
+  Scenario: Test suite duration
+    Given a file named "spec/suite_duration_spec.rb" with:
+      """
+      describe "suite element" do
+        it "should contain a duration" do
+          1.should == 1
+        end
+      end
+      """
+    When I run `rspec spec/suite_duration_spec.rb -r ../../lib/yarjuf -f JUnit -o results.xml`
+    Then the junit output testsuite element contains a duration
+
+  Scenario: Test suite time stamp
+    Given a file named "spec/suite_timestamp_spec.rb" with:
+      """
+      describe "suite element" do
+        it "should contain a timestamp" do
+          1.should == 1
+        end
+      end
+      """
+    When I run `rspec spec/suite_timestamp_spec.rb -r ../../lib/yarjuf -f JUnit -o results.xml`
+    Then the junit output testsuite element contains a timestamp
+
