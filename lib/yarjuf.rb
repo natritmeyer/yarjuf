@@ -22,7 +22,7 @@ class JUnit < RSpec::Core::Formatters::BaseFormatter
   def dump_summary(duration, example_count, failure_count, pending_count)
     builder = Builder::XmlMarkup.new :indent => 2
     builder.instruct! :xml, :version => "1.0", :encoding => "UTF-8"
-    builder.testsuites
+    builder.testsuites :errors => 0, :failures => failure_count, :skipped => pending_count, :tests => example_count, :time => duration, :timestamp => Time.now.iso8601
     output.puts builder.target!
   end
 end

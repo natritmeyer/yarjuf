@@ -15,3 +15,15 @@ Feature: Suite Summary
     When I run `rspec spec/suite_element_spec.rb -r ../../lib/yarjuf -f JUnit -o results.xml`
     Then the junit output contains the testsuite element
 
+    Scenario: One passing test
+    Given a file named "spec/one_passing_test_spec.rb" with:
+      """
+      describe "suite level details for 1 passing test" do
+        it "should pass" do
+          1.should == 1
+        end
+      end
+      """
+    When I run `rspec spec/one_passing_test_spec.rb -r ../../lib/yarjuf -f JUnit -o results.xml`
+    Then the junit output reports one passing test
+
