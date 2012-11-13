@@ -72,5 +72,22 @@ written to a file, execute the following:
 
 #### Running rspec tests using Rake
 
-#### Running rspec tests using Jenkins/Hudson
+In this scenario, you want to run your rspec tests using rake. To do
+that you'll need to add an option to your rake task:
+
+```ruby
+RSpec::Core::RakeTask.new(:spec) do |t|
+  t.rspec_opts = %w[-f JUnit -o results.xml]
+end
+```
+
+That will write out JUnit formatted results to a file called
+`results.xml`. 
+
+#### Jenkins integration
+
+To use yarjuf with Jenkins(/Hudson), simply tick the 'Publish JUnit test
+result report' option in the Jenkins task configuration page and specify
+the file name that you expect the JUnit formatted results to be written
+to, ie: the file path and name specified in the `-o` option above.
 
