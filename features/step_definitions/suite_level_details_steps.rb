@@ -36,3 +36,4 @@ Then /^the junit output testsuite element contains a timestamp$/ do
   step 'I parse the junit results file'
   @results.at_xpath("/testsuites/@timestamp").value.should match /\d{4}-\d{2}-\d{2}T\d+:\d+:\d+\+\d+:\d+/
 end
+
