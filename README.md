@@ -6,10 +6,12 @@ _Yet Another RSpec JUnit Formatter_
 
 1. `gem install yarjuf`
 1. Add the following to your `spec/spec_helper.rb`:
+
 ```ruby
 require 'yarjuf'
 ```
 1. Execute your tests:
+
 `rspec -f JUnit -o results.xml`
 
 ## Intro
