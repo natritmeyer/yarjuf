@@ -3,7 +3,6 @@ Feature: Individual suites
   In order to see relevant tests grouped together in suites
   I want to be able to differentiate between different `describe` blocks
 
-  @wip
   Scenario: Differentiating between 2 suites
     Given a file named "spec/suite_one_spec.rb" with:
       """
