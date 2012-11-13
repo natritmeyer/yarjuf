@@ -35,3 +35,15 @@ Feature: Individual Tests
     When I run `rspec spec/nested_spec.rb -r ../../lib/yarjuf -f JUnit -o results.xml`
     Then the junit output file has a nicely rendered nested test name
 
+  Scenario: Test duration
+    Given a file named "spec/test_duration_spec.rb" with:
+      """
+      describe "suite one" do
+        it "should do something" do
+          1.should == 1
+        end
+      end
+      """
+    When I run `rspec spec/test_duration_spec.rb -r ../../lib/yarjuf -f JUnit -o results.xml`
+    Then the junit output file contains a test with a duration
+

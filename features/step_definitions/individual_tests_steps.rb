@@ -8,3 +8,8 @@ Then /^the junit output file has a nicely rendered nested test name$/ do
   @results.at_xpath("/testsuites/testsuite/testcase/@name").value.should == "something that is really deep should still be displayed nicely"
 end
 
+Then /^the junit output file contains a test with a duration$/ do
+  step 'I parse the junit results file'
+  @results.at_xpath("/testsuites/testsuite/testcase/@time").value.should match /[.0-9]+/
+end
+
