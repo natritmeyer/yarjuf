@@ -40,12 +40,26 @@ class JUnit < RSpec::Core::Formatters::BaseFormatter
     group_hierarchy
   end
 
+  def pass_count_for_suite(suite)
+    suite.select {|example| example.metadata[:execution_result][:status] == "passed"}.size
+  end
+
+  def fail_count_for_suite(suite)
+    suite.select {|example| example.metadata[:execution_result][:status] == "failed"}.size
+  end
+
+  def skipped_count_for_suite(suite)
+    suite.select {|example| example.metadata[:execution_result][:status] == "pending"}.size
+  end
+
   def dump_summary(duration, example_count, failure_count, pending_count)
     builder = Builder::XmlMarkup.new :indent => 2
     builder.instruct! :xml, :version => "1.0", :encoding => "UTF-8"
     builder.testsuites :errors => 0, :failures => failure_count, :skipped => pending_count, :tests => example_count, :time => duration, :timestamp => Time.now.iso8601 do
       @test_suite_results.each do |suite_name, tests|
-        builder.testsuite :name => suite_name, :tests => tests.size
+        builder.testsuite :name => suite_name, :tests => tests.size, :errors => 0, :failures => fail_count_for_suite(tests), :skipped => skipped_count_for_suite(tests) do
+
+        end
       end
     end
     output.puts builder.target!
