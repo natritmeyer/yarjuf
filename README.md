@@ -57,9 +57,18 @@ used as a formatter
 ### Generating JUnit output using yarjuf
 
 RSpec tests can be executed in a number of ways. Here's how to get JUnit
-output for each of those different ways.
+output for each of those different ways - assuming you've loaded yarjuf
+as speficied above).
 
 #### Running rspec tests from the command line
+
+In this scenario, you just want to run `rspec` from the command line and
+get JUnit output. To do that you'll need to use the `-f JUnit` option
+to generate JUnit output and to write it to a file you can use the
+`-o results.xml` option. So to run all your tests and get JUnit output
+written to a file, execute the following:
+
+`rspec -f JUnit -o results.xml`
 
 #### Running rspec tests using Rake
 
