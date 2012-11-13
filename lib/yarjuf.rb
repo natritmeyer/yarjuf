@@ -54,7 +54,10 @@ class JUnit < RSpec::Core::Formatters::BaseFormatter
     builder.testsuites :errors => 0, :failures => failure_count, :skipped => pending_count, :tests => example_count, :time => duration, :timestamp => Time.now.iso8601 do
       @test_suite_results.each do |suite_name, tests|
         builder.testsuite :name => suite_name, :tests => tests.size, :errors => 0, :failures => fail_count_for_suite(tests), :skipped => skipped_count_for_suite(tests) do
-
+          builder.properties
+          tests.each do |test|
+            builder.testcase :name => test.metadata[:full_description]
+          end
         end
       end
     end
