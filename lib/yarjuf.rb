@@ -40,10 +40,6 @@ class JUnit < RSpec::Core::Formatters::BaseFormatter
     group_hierarchy
   end
 
-  def pass_count_for_suite(suite)
-    suite.select {|example| example.metadata[:execution_result][:status] == "passed"}.size
-  end
-
   def fail_count_for_suite(suite)
     suite.select {|example| example.metadata[:execution_result][:status] == "failed"}.size
   end
