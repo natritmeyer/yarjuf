@@ -54,7 +54,7 @@ Feature: Suite Summary
   Scenario: Test suite duration
     Given a file named "spec/suite_duration_spec.rb" with:
       """
-      describe "suite element" do
+      describe "suite element duration" do
         it "should contain a duration" do
           1.should == 1
         end
@@ -66,7 +66,7 @@ Feature: Suite Summary
   Scenario: Test suite time stamp
     Given a file named "spec/suite_timestamp_spec.rb" with:
       """
-      describe "suite element" do
+      describe "suite element timestamp" do
         it "should contain a timestamp" do
           1.should == 1
         end
