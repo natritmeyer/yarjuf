@@ -7,7 +7,7 @@ Gem::Specification.new do |s|
   s.homepage    = "http://github.com/natritmeyer/yarjuf"
   s.summary     = "Yet Another RSpec JUnit Formatter (for Hudson/Jenkins)"
   s.description = "Yet Another RSpec JUnit Formatter (for Hudson/Jenkins)"
-  s.files        = Dir.glob("lib/**/*") + %w(LICENSE README.md)
+  s.files        = Dir.glob("lib/**/*") + %w(LICENSE.txt README.md)
   s.require_path = 'lib'
   s.add_dependency('rspec', '>= 2.0.0')
 end

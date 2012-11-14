@@ -53,13 +53,13 @@ require 'yarjuf'
 ```
 
 That will make sure that yarjuf is loaded when RSpec starts and can be
-used as a formatter
+used as a formatter.
 
 ### Generating JUnit output using yarjuf
 
 RSpec tests can be executed in a number of ways. Here's how to get JUnit
 output for each of those different ways - assuming you've loaded yarjuf
-as speficied above).
+as specified above).
 
 #### Running rspec tests from the command line
 
