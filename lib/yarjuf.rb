@@ -42,7 +42,7 @@ class JUnit < RSpec::Core::Formatters::BaseFormatter
 
   def failure_details_for(example)
     exception = example.metadata[:execution_result][:exception]
-    exception.nil? ? "" : "#{exception.message}\n#{format_backtrace(exception.backtrace, example).join("\n")}"
+    exception.nil? ? "" : "#{exception.message}\n#{format_backtrace(exception.backtrace).join("\n")}"
   end
 
   def fail_count_for_suite(suite)
