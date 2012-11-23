@@ -5,4 +5,5 @@ gem "rspec"
 gem "aruba"
 gem "nokogiri"
 gem "simplecov"
+gem "builder"
 
