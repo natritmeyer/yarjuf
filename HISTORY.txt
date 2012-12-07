@@ -2,4 +2,11 @@
 - Initial release
 
 1.0.1
-- Fixing incompatibility with rspec 2.12
+- Bug in RSpec 2.12 needs coding around
+
+1.0.2
+- Added dependency on the 'builder' gem
+
+1.0.3
+- Bug fix in RSpec 2.12.1 means we can go back to how it was in 1.0.1
+
