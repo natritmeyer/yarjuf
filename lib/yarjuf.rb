@@ -3,6 +3,9 @@ require 'builder'
 require 'rspec/core/formatters/base_formatter'
 
 class JUnit < RSpec::Core::Formatters::BaseFormatter
+
+  #rspec formatter methods we care about
+
   def initialize(output)
     super output
     @test_suite_results = {}
