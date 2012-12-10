@@ -65,11 +65,15 @@ class JUnit < RSpec::Core::Formatters::BaseFormatter
   #calculate various counts used at the test suite level
 
   def fail_count_for_suite(suite)
-    suite.select {|example| example.metadata[:execution_result][:status] == "failed"}.size
+    count_of_test_case_result_type_for_suite suite, "failed"
   end
 
   def skipped_count_for_suite(suite)
-    suite.select {|example| example.metadata[:execution_result][:status] == "pending"}.size
+    count_of_test_case_result_type_for_suite suite, "pending"
+  end
+
+  def count_of_test_case_result_type_for_suite(suite, test_case_result_type)
+    suite.select {|example| example.metadata[:execution_result][:status] == test_case_result_type}.size
   end
 
   #methods to build the xml for test suites and individual tests
