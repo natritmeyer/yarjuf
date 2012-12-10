@@ -74,22 +74,22 @@ class JUnit < RSpec::Core::Formatters::BaseFormatter
 
   #methods to build the xml for test suites and individual tests
 
-  def build_test_suite(xml_builder, suite_name, tests)
-    xml_builder.testsuite :name => suite_name, :tests => tests.size, :errors => 0, :failures => fail_count_for_suite(tests), :skipped => skipped_count_for_suite(tests) do
-      xml_builder.properties
+  def build_test_suite(builder, suite_name, tests)
+    builder.testsuite :name => suite_name, :tests => tests.size, :errors => 0, :failures => fail_count_for_suite(tests), :skipped => skipped_count_for_suite(tests) do
+      builder.properties
       tests.each do |test|
-        build_test xml_builder, test
+        build_test builder, test
       end
     end
   end
 
-  def build_test(xml_builder, test)
-    xml_builder.testcase :name => test.metadata[:full_description], :time => test.metadata[:execution_result][:run_time] do
+  def build_test(builder, test)
+    builder.testcase :name => test.metadata[:full_description], :time => test.metadata[:execution_result][:run_time] do
       case test.metadata[:execution_result][:status]
-      when "pending" then xml_builder.skipped
+      when "pending" then builder.skipped
       when "failed"
-        xml_builder.failure :message => "failed #{test.metadata[:full_description]}", :type => "failed" do
-          xml_builder.cdata! failure_details_for test
+        builder.failure :message => "failed #{test.metadata[:full_description]}", :type => "failed" do
+          builder.cdata! failure_details_for test
         end
       end
     end
