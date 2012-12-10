@@ -37,8 +37,6 @@ class JUnit < RSpec::Core::Formatters::BaseFormatter
     @test_suite_results[suite_name] << example
   end
 
-  #dealing with test names and their hierarchies
-
   def root_group_name_for(example)
     group_hierarchy = []
     current_example_group = example.metadata[:example_group]
@@ -49,24 +47,12 @@ class JUnit < RSpec::Core::Formatters::BaseFormatter
     group_hierarchy.first[:description]
   end
 
-  #logic around stack traces for failed tests
-
   def failure_details_for(example)
     exception = example.metadata[:execution_result][:exception]
     exception.nil? ? "" : "#{exception.message}\n#{format_backtrace(exception.backtrace, example).join("\n")}"
   end
 
-  #calculate various counts used at the test suite level
-
-  def fail_count_for_suite(suite)
-    count_of_test_case_result_type_for_suite suite, "failed"
-  end
-
-  def skipped_count_for_suite(suite)
-    count_of_test_case_result_type_for_suite suite, "pending"
-  end
-
-  def count_of_test_case_result_type_for_suite(suite, test_case_result_type)
+  def count_in_suite_of_type(suite, test_case_result_type)
     suite.select {|example| example.metadata[:execution_result][:status] == test_case_result_type}.size
   end
 
@@ -80,7 +66,7 @@ class JUnit < RSpec::Core::Formatters::BaseFormatter
   end
 
   def build_test_suite(builder, suite_name, tests)
-    builder.testsuite :name => suite_name, :tests => tests.size, :errors => 0, :failures => fail_count_for_suite(tests), :skipped => skipped_count_for_suite(tests) do
+    builder.testsuite :name => suite_name, :tests => tests.size, :errors => 0, :failures => count_in_suite_of_type(tests, "failed"), :skipped => count_in_suite_of_type(tests, "pending") do
       builder.properties
       tests.each {|test| build_test builder, test}
     end
