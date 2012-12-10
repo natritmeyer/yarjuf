@@ -58,15 +58,20 @@ class JUnit < RSpec::Core::Formatters::BaseFormatter
     builder.instruct! :xml, :version => "1.0", :encoding => "UTF-8"
     builder.testsuites :errors => 0, :failures => failure_count, :skipped => pending_count, :tests => example_count, :time => duration, :timestamp => Time.now.iso8601 do
       @test_suite_results.each do |suite_name, tests|
-        builder.testsuite :name => suite_name, :tests => tests.size, :errors => 0, :failures => fail_count_for_suite(tests), :skipped => skipped_count_for_suite(tests) do
-          builder.properties
-          tests.each do |test|
-            build_test builder, test
-          end
-        end
+        build_test_suite builder, suite_name, tests
       end
     end
     output.puts builder.target!
+  end
+
+  def build_test_suite(xml_builder, suite_name, tests)
+    xml_builder.testsuite :name => suite_name, :tests => tests.size, :errors => 0, :failures => fail_count_for_suite(tests), :skipped => skipped_count_for_suite(tests) do
+      xml_builder.properties
+      tests.each do |test|
+        build_test xml_builder, test
+      end
+    end
+
   end
 
   def build_test(xml_builder, test)
