@@ -22,12 +22,7 @@ class JUnit < RSpec::Core::Formatters::BaseFormatter
 
   def dump_summary(duration, example_count, failure_count, pending_count)
     builder = Builder::XmlMarkup.new :indent => 2
-    builder.instruct! :xml, :version => "1.0", :encoding => "UTF-8"
-    builder.testsuites :errors => 0, :failures => failure_count, :skipped => pending_count, :tests => example_count, :time => duration, :timestamp => Time.now.iso8601 do
-      @test_suite_results.each do |suite_name, tests|
-        build_test_suite builder, suite_name, tests
-      end
-    end
+    build_results builder, duration, example_count, failure_count, pending_count
     output.puts builder.target!
   end
 
@@ -77,6 +72,15 @@ class JUnit < RSpec::Core::Formatters::BaseFormatter
   end
 
   #methods to build the xml for test suites and individual tests
+
+  def build_results(builder, duration, example_count, failure_count, pending_count)
+    builder.instruct! :xml, :version => "1.0", :encoding => "UTF-8"
+    builder.testsuites :errors => 0, :failures => failure_count, :skipped => pending_count, :tests => example_count, :time => duration, :timestamp => Time.now.iso8601 do
+      @test_suite_results.each do |suite_name, tests|
+        build_test_suite builder, suite_name, tests
+      end
+    end
+  end
 
   def build_test_suite(builder, suite_name, tests)
     builder.testsuite :name => suite_name, :tests => tests.size, :errors => 0, :failures => fail_count_for_suite(tests), :skipped => skipped_count_for_suite(tests) do
