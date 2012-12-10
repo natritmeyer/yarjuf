@@ -20,11 +20,26 @@ class JUnit < RSpec::Core::Formatters::BaseFormatter
     add_to_test_suite_results(example)
   end
 
+  def dump_summary(duration, example_count, failure_count, pending_count)
+    builder = Builder::XmlMarkup.new :indent => 2
+    builder.instruct! :xml, :version => "1.0", :encoding => "UTF-8"
+    builder.testsuites :errors => 0, :failures => failure_count, :skipped => pending_count, :tests => example_count, :time => duration, :timestamp => Time.now.iso8601 do
+      @test_suite_results.each do |suite_name, tests|
+        build_test_suite builder, suite_name, tests
+      end
+    end
+    output.puts builder.target!
+  end
+
+  protected
+
   def add_to_test_suite_results(example)
     suite_name = root_group_name_for(example)
     @test_suite_results[suite_name] = [] unless @test_suite_results.keys.include?(suite_name)
     @test_suite_results[suite_name] << example
   end
+
+  #dealing with test names and their hierarchies
 
   def root_group_name_for(example)
     group_hierarchy_for(example).first[:description]
@@ -40,10 +55,14 @@ class JUnit < RSpec::Core::Formatters::BaseFormatter
     group_hierarchy
   end
 
+  #logic around stack traces for failed tests
+
   def failure_details_for(example)
     exception = example.metadata[:execution_result][:exception]
     exception.nil? ? "" : "#{exception.message}\n#{format_backtrace(exception.backtrace, example).join("\n")}"
   end
+
+  #calculate various counts used at the test suite level
 
   def fail_count_for_suite(suite)
     suite.select {|example| example.metadata[:execution_result][:status] == "failed"}.size
@@ -53,16 +72,7 @@ class JUnit < RSpec::Core::Formatters::BaseFormatter
     suite.select {|example| example.metadata[:execution_result][:status] == "pending"}.size
   end
 
-  def dump_summary(duration, example_count, failure_count, pending_count)
-    builder = Builder::XmlMarkup.new :indent => 2
-    builder.instruct! :xml, :version => "1.0", :encoding => "UTF-8"
-    builder.testsuites :errors => 0, :failures => failure_count, :skipped => pending_count, :tests => example_count, :time => duration, :timestamp => Time.now.iso8601 do
-      @test_suite_results.each do |suite_name, tests|
-        build_test_suite builder, suite_name, tests
-      end
-    end
-    output.puts builder.target!
-  end
+  #methods to build the xml for test suites and individual tests
 
   def build_test_suite(xml_builder, suite_name, tests)
     xml_builder.testsuite :name => suite_name, :tests => tests.size, :errors => 0, :failures => fail_count_for_suite(tests), :skipped => skipped_count_for_suite(tests) do
