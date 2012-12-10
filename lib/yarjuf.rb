@@ -61,20 +61,24 @@ class JUnit < RSpec::Core::Formatters::BaseFormatter
         builder.testsuite :name => suite_name, :tests => tests.size, :errors => 0, :failures => fail_count_for_suite(tests), :skipped => skipped_count_for_suite(tests) do
           builder.properties
           tests.each do |test|
-            builder.testcase :name => test.metadata[:full_description], :time => test.metadata[:execution_result][:run_time] do
-              case test.metadata[:execution_result][:status]
-              when "pending" then builder.skipped
-              when "failed"
-                builder.failure :message => "failed #{test.metadata[:full_description]}", :type => "failed" do
-                  builder.cdata! failure_details_for test
-                end
-              end
-            end
+            build_test builder, test
           end
         end
       end
     end
-  output.puts builder.target!
+    output.puts builder.target!
+  end
+
+  def build_test(xml_builder, test)
+    xml_builder.testcase :name => test.metadata[:full_description], :time => test.metadata[:execution_result][:run_time] do
+      case test.metadata[:execution_result][:status]
+      when "pending" then xml_builder.skipped
+      when "failed"
+        xml_builder.failure :message => "failed #{test.metadata[:full_description]}", :type => "failed" do
+          xml_builder.cdata! failure_details_for test
+        end
+      end
+    end
   end
 end
 
