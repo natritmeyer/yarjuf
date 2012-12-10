@@ -71,7 +71,6 @@ class JUnit < RSpec::Core::Formatters::BaseFormatter
         build_test xml_builder, test
       end
     end
-
   end
 
   def build_test(xml_builder, test)
