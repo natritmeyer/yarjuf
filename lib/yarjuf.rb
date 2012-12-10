@@ -37,17 +37,13 @@ class JUnit < RSpec::Core::Formatters::BaseFormatter
   #dealing with test names and their hierarchies
 
   def root_group_name_for(example)
-    group_hierarchy_for(example).first[:description]
-  end
-
-  def group_hierarchy_for(example)
     group_hierarchy = []
     current_example_group = example.metadata[:example_group]
     until current_example_group.nil? do
       group_hierarchy.unshift current_example_group
       current_example_group = current_example_group[:example_group]
     end
-    group_hierarchy
+    group_hierarchy.first[:description]
   end
 
   #logic around stack traces for failed tests
