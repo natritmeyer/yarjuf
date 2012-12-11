@@ -10,3 +10,7 @@
 1.0.3
 - Bug fix in RSpec 2.12.1 means we can go back to how it was before 1.0.1
 
+1.0.4
+- No functional changes, just a big refactor to make the code more
+  maintainable.
+
