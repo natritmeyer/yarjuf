@@ -14,15 +14,15 @@ class JUnit < RSpec::Core::Formatters::BaseFormatter
   end
 
   def example_passed(example)
-    add_to_test_suite_results(example)
+    add_to_test_suite_results example
   end
 
   def example_failed(example)
-    add_to_test_suite_results(example)
+    add_to_test_suite_results example
   end
 
   def example_pending(example)
-    add_to_test_suite_results(example)
+    add_to_test_suite_results example
   end
 
   def dump_summary(duration, example_count, failure_count, pending_count)
@@ -34,7 +34,7 @@ class JUnit < RSpec::Core::Formatters::BaseFormatter
 
   def add_to_test_suite_results(example)
     suite_name = JUnit.root_group_name_for(example)
-    @test_suite_results[suite_name] = [] unless @test_suite_results.keys.include?(suite_name)
+    @test_suite_results[suite_name] = [] unless @test_suite_results.keys.include? suite_name
     @test_suite_results[suite_name] << example
   end
 
@@ -73,12 +73,12 @@ class JUnit < RSpec::Core::Formatters::BaseFormatter
   end
 
   def build_test_suite(suite_name, tests)
-    failure_count = JUnit.count_in_suite_of_type(tests, "failed")
-    skipped_count = JUnit.count_in_suite_of_type(tests, "pending")
-    
+    failure_count = JUnit.count_in_suite_of_type tests, "failed"
+    skipped_count = JUnit.count_in_suite_of_type tests, "pending"
+        
     @builder.testsuite :name => suite_name, :tests => tests.size, :errors => 0, :failures => failure_count, :skipped => skipped_count do
       @builder.properties
-      build_all_tests(tests)
+      build_all_tests tests
     end
   end
   
