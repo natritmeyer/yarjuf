@@ -6,4 +6,5 @@ gem "aruba"
 gem "nokogiri"
 gem "simplecov"
 gem "builder"
+gem "reek"
 
