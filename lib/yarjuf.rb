@@ -69,7 +69,9 @@ class JUnit < RSpec::Core::Formatters::BaseFormatter
   end
   
   def build_all_suites
-    @test_suite_results.each {|suite_name, tests| build_test_suite suite_name, tests}
+    @test_suite_results.each do |suite_name, tests|
+      build_test_suite suite_name, tests
+    end
   end
 
   def build_test_suite(suite_name, tests)
@@ -83,7 +85,9 @@ class JUnit < RSpec::Core::Formatters::BaseFormatter
   end
   
   def build_all_tests(tests)
-    tests.each {|test| build_test test}
+    tests.each do |test|
+      build_test test
+    end
   end
 
   def build_test(test)
