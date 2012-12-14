@@ -33,7 +33,7 @@ class JUnit < RSpec::Core::Formatters::BaseFormatter
   protected
 
   def add_to_test_suite_results(example)
-    suite_name = JUnit.root_group_name_for(example)
+    suite_name = JUnit.root_group_name_for example
     @test_suite_results[suite_name] = [] unless @test_suite_results.keys.include? suite_name
     @test_suite_results[suite_name] << example
   end
