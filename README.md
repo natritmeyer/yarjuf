@@ -2,6 +2,8 @@
 
 _Yet Another RSpec JUnit Formatter_
 
+[![Build Status](https://travis-ci.org/natritmeyer/yarjuf.png)](https://travis-ci.org/natritmeyer/yarjuf)
+
 ## Intro
 
 I've never found a gem that can be relied on to generate JUnit

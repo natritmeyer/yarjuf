@@ -1,5 +1,5 @@
 GEM
-  remote: http://rubygems.org/
+  remote: https://rubygems.org/
   specs:
     aruba (0.5.1)
       childprocess (~> 0.3.6)
@@ -20,6 +20,7 @@ GEM
     json (1.7.5)
     multi_json (1.4.0)
     nokogiri (1.5.5)
+    rake (10.0.4)
     reek (1.2.13)
       ripper_ruby_parser (~> 0.0.7)
       ruby2ruby (~> 1.2.5)
@@ -54,6 +55,7 @@ DEPENDENCIES
   builder
   cucumber
   nokogiri
+  rake
   reek
   rspec
   simplecov
