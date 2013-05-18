@@ -23,6 +23,6 @@ Then /^the junit output file contains a failing test$/ do
   @results.at_xpath("/testsuites/testsuite/testcase/failure").should_not be_nil
   @results.at_xpath("/testsuites/testsuite/testcase/failure/@message").value.should == "failed suite one should be failing"
   @results.at_xpath("/testsuites/testsuite/testcase/failure/@type").value.should == "failed"
-  @results.at_xpath("/testsuites/testsuite/testcase/failure").text.should match /expected: 2\s+got: 1 \(using ==\)\s+\.\/spec\/failing_test_spec\.rb:3:in `block \(2 levels\) in <top \(required\)>'/m
+  @results.at_xpath("/testsuites/testsuite/testcase/failure").text.should match /expected.*2.*got.*1.*using.*==.*spec\/failing_test_spec\.rb:3/m
 end
 
