@@ -14,3 +14,6 @@
 - No functional changes, just a big refactor to make the code more
   maintainable.
 
+1.0.5
+- some refactoring, no functional changes
+

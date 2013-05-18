@@ -7,3 +7,4 @@ gemfile:
 branches:
   only:
     - master
+
