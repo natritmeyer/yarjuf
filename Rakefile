@@ -18,3 +18,5 @@ namespace :spec do
   end
 end
 
+task default: ['spec:all', 'cuke:all']
+
