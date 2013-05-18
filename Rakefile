@@ -20,5 +20,3 @@ end
 
 task default: ['spec:all', 'cuke:all']
 
-#change to make travis do something...
-
