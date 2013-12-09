@@ -63,7 +63,7 @@ class JUnit < RSpec::Core::Formatters::BaseFormatter
 
   def build_results(duration, example_count, failure_count, pending_count)
     @builder.instruct! :xml, :version => "1.0", :encoding => "UTF-8"
-    @builder.testsuites :errors => 0, :failures => failure_count, :skipped => pending_count, :tests => example_count, :time => duration, :timestamp => Time.now.iso8601 do
+    @builder.testsuites :errors => 0, :failures => failure_count, :tests => example_count, :time => duration do
       build_all_suites
     end
   end
@@ -77,8 +77,8 @@ class JUnit < RSpec::Core::Formatters::BaseFormatter
   def build_test_suite(suite_name, tests)
     failure_count = JUnit.count_in_suite_of_type tests, "failed"
     skipped_count = JUnit.count_in_suite_of_type tests, "pending"
-        
-    @builder.testsuite :name => suite_name, :tests => tests.size, :errors => 0, :failures => failure_count, :skipped => skipped_count do
+
+    @builder.testsuite :name => suite_name, :tests => tests.size, :errors => 0, :failures => failure_count, :skipped => skipped_count, :timestamp => Time.now.iso8601 do
       @builder.properties
       build_all_tests tests
     end
