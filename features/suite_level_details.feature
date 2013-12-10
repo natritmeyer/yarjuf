@@ -62,16 +62,3 @@ Feature: Suite Summary
       """
     When I run `rspec spec/suite_duration_spec.rb -r ../../lib/yarjuf -f JUnit -o results.xml`
     Then the junit output testsuite element contains a duration
-
-  Scenario: Test suite time stamp
-    Given a file named "spec/suite_timestamp_spec.rb" with:
-      """
-      describe "suite element timestamp" do
-        it "should contain a timestamp" do
-          1.should == 1
-        end
-      end
-      """
-    When I run `rspec spec/suite_timestamp_spec.rb -r ../../lib/yarjuf -f JUnit -o results.xml`
-    Then the junit output testsuite element contains a timestamp
-
