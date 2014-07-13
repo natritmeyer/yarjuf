@@ -8,7 +8,7 @@ Feature: Individual Tests
       """
       describe "suite one" do
         it "simple name" do
-          1.should == 1
+          expect(1).to eq 1
         end
       end
       """
@@ -24,7 +24,7 @@ Feature: Individual Tests
             context "really" do
               context "deep" do
                 it "should still be displayed nicely" do
-                  1.should == 1
+                  expect(1).to eq 1
                 end
               end
             end
@@ -40,7 +40,7 @@ Feature: Individual Tests
       """
       describe "suite one" do
         it "should do something" do
-          1.should == 1
+          expect(1).to eq 1
         end
       end
       """
@@ -64,7 +64,7 @@ Feature: Individual Tests
       """
       describe "suite one" do
         it "should be failing" do
-          1.should == 2
+          expect(1).to eq 2
         end
       end
       """

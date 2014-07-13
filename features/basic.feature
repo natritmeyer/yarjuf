@@ -8,7 +8,7 @@ Feature: Basic use of Yarjuf
       """
       describe "basic usage" do
         it "should work" do
-          true.should be_true
+          expect(true).to be true
         end
       end
       """
