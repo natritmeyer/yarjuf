@@ -1,7 +1,3 @@
-require 'time'
-require 'builder'
-require 'rspec/core/formatters/base_formatter'
-
 #An RSpec formatter for generating results in JUnit format
 class JUnit < RSpec::Core::Formatters::BaseFormatter
 
@@ -42,7 +38,7 @@ class JUnit < RSpec::Core::Formatters::BaseFormatter
     exception = example.metadata[:execution_result][:exception]
     exception.nil? ? "" : "#{exception.message}\n#{format_backtrace(exception.backtrace, example).join("\n")}"
   end
-  
+
   #utility methods
 
   def self.count_in_suite_of_type(suite, test_case_result_type)
@@ -67,7 +63,7 @@ class JUnit < RSpec::Core::Formatters::BaseFormatter
       build_all_suites
     end
   end
-  
+
   def build_all_suites
     @test_suite_results.each do |suite_name, tests|
       build_test_suite suite_name, tests
@@ -77,13 +73,13 @@ class JUnit < RSpec::Core::Formatters::BaseFormatter
   def build_test_suite(suite_name, tests)
     failure_count = JUnit.count_in_suite_of_type tests, "failed"
     skipped_count = JUnit.count_in_suite_of_type tests, "pending"
-        
+
     @builder.testsuite :name => suite_name, :tests => tests.size, :errors => 0, :failures => failure_count, :skipped => skipped_count do
       @builder.properties
       build_all_tests tests
     end
   end
-  
+
   def build_all_tests(tests)
     tests.each do |test|
       build_test test
@@ -94,7 +90,7 @@ class JUnit < RSpec::Core::Formatters::BaseFormatter
     test_name = test.metadata[:full_description]
     execution_time = test.metadata[:execution_result][:run_time]
     test_status = test.metadata[:execution_result][:status]
-    
+
     @builder.testcase :name => test_name, :time => execution_time do
       case test_status
       when "pending" then @builder.skipped
@@ -105,7 +101,7 @@ class JUnit < RSpec::Core::Formatters::BaseFormatter
 
   def build_failed_test(test)
     failure_message = "failed #{test.metadata[:full_description]}"
-    
+
     @builder.failure :message => failure_message, :type => "failed" do
       @builder.cdata! failure_details_for test
     end
