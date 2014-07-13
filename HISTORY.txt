@@ -17,3 +17,5 @@
 1.0.5
 - some refactoring, no functional changes
 
+1.0.6
+- Last version that works with RSpec 2. Some internal refactoring.
