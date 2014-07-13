@@ -1,10 +1,11 @@
 # -*- encoding: utf-8 -*-
 lib = File.expand_path('../lib', __FILE__)
 $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
+require 'yarjuf/version'
 
 Gem::Specification.new do |gem|
   gem.name        = 'yarjuf'
-  gem.version     = '1.0.5'
+  gem.version     = Yarjuf::VERSION
   gem.platform    = Gem::Platform::RUBY
   gem.authors     = ['Nat Ritmeyer']
   gem.email       = ['nat@natontesting.com']
