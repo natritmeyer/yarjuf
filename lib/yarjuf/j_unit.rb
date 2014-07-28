@@ -45,14 +45,8 @@ class JUnit
     suite.select { |example| example.metadata[:execution_result].status == test_case_result_type }.size
   end
 
-  def self.root_group_name_for(example)
-    group_hierarchy = []
-    current_example_group = example.metadata[:example_group]
-    until current_example_group.nil? do
-      group_hierarchy.unshift current_example_group
-      current_example_group = current_example_group[:example_group]
-    end
-    group_hierarchy.first[:description]
+  def self.root_group_name_for(example_notification)
+    example_notification.example.metadata[:example_group][:description]
   end
 
   #methods to build the xml for test suites and individual tests
