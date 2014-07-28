@@ -8,16 +8,16 @@ class JUnit
     @builder            = Builder::XmlMarkup.new :indent => 2
   end
 
-  def example_passed(example)
-    add_to_test_suite_results example
+  def example_passed(example_notification)
+    add_to_test_suite_results example_notification
   end
 
-  def example_failed(example)
-    add_to_test_suite_results example
+  def example_failed(example_notification)
+    add_to_test_suite_results example_notification
   end
 
-  def example_pending(example)
-    add_to_test_suite_results example
+  def example_pending(example_notification)
+    add_to_test_suite_results example_notification
   end
 
   def dump_summary(summary)
@@ -27,10 +27,10 @@ class JUnit
 
   protected
 
-  def add_to_test_suite_results(example)
-    suite_name = JUnit.root_group_name_for example
+  def add_to_test_suite_results(example_notification)
+    suite_name                      = JUnit.root_group_name_for example_notification
     @test_suite_results[suite_name] = [] unless @test_suite_results.keys.include? suite_name
-    @test_suite_results[suite_name] << example
+    @test_suite_results[suite_name] << example_notification.example
   end
 
   def failure_details_for(example)
