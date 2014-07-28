@@ -26,6 +26,7 @@ Gem::Specification.new do |gem|
   gem.add_development_dependency('cucumber')
   gem.add_development_dependency('aruba')
   gem.add_development_dependency('simplecov')
+  gem.add_development_dependency('simplecov', '~> 0.8.2') # for Ruby 1.8.7
   gem.add_development_dependency('reek', ['= 1.3.7']) # for Ruby 1.8.7
   gem.add_development_dependency('rainbow', '~> 1.99.2') # for Ruby 1.8.7
 end
