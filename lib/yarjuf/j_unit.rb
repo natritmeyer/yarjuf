@@ -34,8 +34,9 @@ class JUnit
   end
 
   def failure_details_for(example)
-    exception = example.metadata[:execution_result][:exception]
-    exception.nil? ? "" : "#{exception.message}\n#{format_backtrace(exception.backtrace, example).join("\n")}"
+    exception           = example.exception
+    formatted_backtrace = RSpec::Core::BacktraceFormatter.new.format_backtrace exception.backtrace
+    exception.nil? ? '' : "#{exception.message}\n#{formatted_backtrace}"
   end
 
   #utility methods
