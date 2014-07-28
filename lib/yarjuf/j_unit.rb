@@ -42,7 +42,7 @@ class JUnit
   #utility methods
 
   def self.count_in_suite_of_type(suite, test_case_result_type)
-    suite.select {|example| example.metadata[:execution_result][:status] == test_case_result_type}.size
+    suite.select { |example| example.metadata[:execution_result].status == test_case_result_type }.size
   end
 
   def self.root_group_name_for(example)
@@ -87,9 +87,9 @@ class JUnit
   end
 
   def build_test(test)
-    test_name = test.metadata[:full_description]
-    execution_time = test.metadata[:execution_result][:run_time]
-    test_status = test.metadata[:execution_result][:status]
+    test_name      = test.metadata[:full_description]
+    execution_time = test.metadata[:execution_result].run_time
+    test_status    = test.metadata[:execution_result].status
 
     @builder.testcase :name => test_name, :time => execution_time do
       case test_status
