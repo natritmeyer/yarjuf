@@ -18,7 +18,7 @@ Gem::Specification.new do |gem|
   gem.test_files    = gem.files.grep(%r{^(test|spec|features)/})
   gem.require_paths = ['lib']
 
-  gem.add_runtime_dependency('rspec', '~> 2.12')
+  gem.add_runtime_dependency('rspec', '~> 3')
   gem.add_runtime_dependency('builder')
 
   gem.add_development_dependency('nokogiri', '~> 1.5.10') # for Ruby 1.8.7
