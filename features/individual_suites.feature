@@ -42,6 +42,7 @@ Feature: Individual suites
 
         it "should contain 1 pending test" do
           pending
+          fail
         end
       end
       """
@@ -66,10 +67,12 @@ Feature: Individual suites
 
         it "should contain one of two pending tests" do
           pending
+          fail
         end
 
         it "should contain two of two pending tests" do
           pending
+          fail
         end
       end
       """

@@ -45,6 +45,7 @@ Feature: Suite Summary
       describe "suite level details for 1 pending test" do
         it "should be pending" do
           pending
+          fail
         end
       end
       """

@@ -53,6 +53,7 @@ Feature: Individual Tests
       describe "suite one" do
         it "should be pending" do
           pending
+          fail
         end
       end
       """
