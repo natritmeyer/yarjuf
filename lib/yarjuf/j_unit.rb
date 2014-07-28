@@ -1,12 +1,11 @@
-#An RSpec formatter for generating results in JUnit format
-class JUnit < RSpec::Core::Formatters::BaseFormatter
-
-  #rspec formatter methods we care about
+# An RSpec formatter for generating results in JUnit format
+class JUnit
+  RSpec::Core::Formatters.register self, :example_passed, :example_failed, :example_pending, :dump_summary
 
   def initialize(output)
-    super output
+    @output             = output
     @test_suite_results = {}
-    @builder = Builder::XmlMarkup.new :indent => 2
+    @builder            = Builder::XmlMarkup.new :indent => 2
   end
 
   def example_passed(example)
@@ -21,9 +20,9 @@ class JUnit < RSpec::Core::Formatters::BaseFormatter
     add_to_test_suite_results example
   end
 
-  def dump_summary(duration, example_count, failure_count, pending_count)
-    build_results duration, example_count, failure_count, pending_count
-    output.puts @builder.target!
+  def dump_summary(summary)
+    build_results(summary.duration, summary.examples.size, summary.failed_examples.size, summary.pending_examples.size)
+    @output.puts @builder.target!
   end
 
   protected
