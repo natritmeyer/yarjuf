@@ -7,7 +7,7 @@ Gem::Specification.new do |gem|
   gem.name        = 'yarjuf'
   gem.version     = Yarjuf::VERSION
   gem.platform    = Gem::Platform::RUBY
-  gem.authors     = ['Nat Ritmeyer']
+  gem.authors     = ['Nat Ritmeyer', 'Ben Snape']
   gem.email       = ['nat@natontesting.com']
   gem.homepage    = 'http://github.com/natritmeyer/yarjuf'
   gem.summary     = 'Yet Another RSpec JUnit Formatter (for Hudson/Jenkins)'
@@ -18,7 +18,7 @@ Gem::Specification.new do |gem|
   gem.test_files    = gem.files.grep(%r{^(test|spec|features)/})
   gem.require_paths = ['lib']
 
-  gem.add_runtime_dependency('rspec', '~> 2.12')
+  gem.add_runtime_dependency('rspec', '~> 3')
   gem.add_runtime_dependency('builder')
 
   gem.add_development_dependency('nokogiri', '~> 1.5.10') # for Ruby 1.8.7

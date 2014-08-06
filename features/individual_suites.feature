@@ -8,7 +8,7 @@ Feature: Individual suites
       """
       describe "suite one" do
         it "should contain one test" do
-          1.should == 1
+          expect(1).to eq 1
         end
       end
       """
@@ -16,7 +16,7 @@ Feature: Individual suites
       """
       describe "suite two" do
         it "should also contain one test" do
-          1.should == 1
+          expect(1).to eq 1
         end
       end
       """
@@ -29,19 +29,20 @@ Feature: Individual suites
       """
       describe "suite one" do
         it "should contain one passing test" do
-          1.should == 1
+          expect(1).to eq 1
         end
 
         it "should contain one of two failing tests" do
-          1.should == 2
+          expect(1).to eq 2
         end
 
         it "should contain two of two failing tests" do
-          1.should == 2
+          expect(1).to eq 2
         end
 
         it "should contain 1 pending test" do
           pending
+          fail
         end
       end
       """
@@ -49,27 +50,29 @@ Feature: Individual suites
       """
       describe "suite two" do
         it "should contain one of 3 passing tests" do
-          1.should == 1
+          expect(1).to eq 1
         end
 
         it "should contain two of 3 passing tests" do
-          1.should == 1
+          expect(1).to eq 1
         end
 
         it "should contain three of 3 passing tests" do
-          1.should == 1
+          expect(1).to eq 1
         end
 
         it "should contain one failing test" do
-          1.should == 2
+          expect(1).to eq 2
         end
 
         it "should contain one of two pending tests" do
           pending
+          fail
         end
 
         it "should contain two of two pending tests" do
           pending
+          fail
         end
       end
       """

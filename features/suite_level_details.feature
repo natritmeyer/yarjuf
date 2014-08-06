@@ -8,7 +8,7 @@ Feature: Suite Summary
       """
       describe "suite element" do
         it "should be present" do
-          1.should == 1
+          expect(1).to eq 1
         end
       end
       """
@@ -20,7 +20,7 @@ Feature: Suite Summary
       """
       describe "suite level details for 1 passing test" do
         it "should pass" do
-          1.should == 1
+          expect(1).to eq 1
         end
       end
       """
@@ -32,7 +32,7 @@ Feature: Suite Summary
       """
       describe "suite level details for 1 failing test" do
         it "should fail" do
-          1.should == 2
+          expect(1).to eq 2
         end
       end
       """
@@ -45,6 +45,7 @@ Feature: Suite Summary
       describe "suite level details for 1 pending test" do
         it "should be pending" do
           pending
+          fail
         end
       end
       """
@@ -56,7 +57,7 @@ Feature: Suite Summary
       """
       describe "suite element duration" do
         it "should contain a duration" do
-          1.should == 1
+          expect(1).to eq 1
         end
       end
       """
@@ -68,7 +69,7 @@ Feature: Suite Summary
       """
       describe "suite element timestamp" do
         it "should contain a timestamp" do
-          1.should == 1
+          expect(1).to eq 1
         end
       end
       """
