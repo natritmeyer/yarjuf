@@ -7,7 +7,7 @@ Gem::Specification.new do |gem|
   gem.name        = 'yarjuf'
   gem.version     = Yarjuf::VERSION
   gem.platform    = Gem::Platform::RUBY
-  gem.authors     = ['Nat Ritmeyer']
+  gem.authors     = ['Nat Ritmeyer', 'Ben Snape']
   gem.email       = ['nat@natontesting.com']
   gem.homepage    = 'http://github.com/natritmeyer/yarjuf'
   gem.summary     = 'Yet Another RSpec JUnit Formatter (for Hudson/Jenkins)'
