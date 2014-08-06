@@ -97,6 +97,7 @@ in the `-o` option above.
 
 ## Acknowledgements
 
+* Thanks to [@bsnape](https://github.com/bsnape) for the rspec 3 compatibility patch
 * Thanks to [@adeoke](https://github.com/adeoke) for suggesting a slightly less sucky gem name than the
 one I originally came up with
 * Thanks to [@dchamb84](https://github.com/dchamb84) for helping me debug the original hack

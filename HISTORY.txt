@@ -19,3 +19,7 @@
 
 1.0.6
 - Last version that works with RSpec 2. Some internal refactoring.
+
+2.0.0
+- Now works with rspec 3 (thanks @bsnape )
+
