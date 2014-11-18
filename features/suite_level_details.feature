@@ -44,7 +44,7 @@ Feature: Suite Summary
       """
       describe "suite level details for 1 failing test with non printable characters" do
         it "should fail" do
-          str = %^Non printable in response \r^
+          str = "Non printable in response\f"
           expect(`echo -n #{str}`).to eq("fail")
         end
       end

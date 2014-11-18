@@ -115,7 +115,7 @@ class JUnit
   end
 
   def filter_unsupported(str)
-    str.gsub!(/[^[:print:]^\n^\t]/, '') if str
+    str.gsub!(/[^[:print:]\t\n]/, '') if str
 
     str
   end
