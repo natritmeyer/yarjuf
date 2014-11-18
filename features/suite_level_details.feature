@@ -39,19 +39,6 @@ Feature: Suite Summary
     When I run `rspec spec/one_failing_test_spec.rb -r ../../lib/yarjuf -f JUnit -o results.xml`
     Then the junit output reports one failing test
 
-  Scenario: One failing test with non printable characters
-    Given a file named "spec/one_failing_test_spec.rb" with:
-      """
-      describe "suite level details for 1 failing test with non printable characters" do
-        it "should fail" do
-          str = "Non printable in response\f"
-          expect(`echo -n #{str}`).to eq("fail")
-        end
-      end
-      """
-    When I run `rspec spec/one_failing_test_spec.rb -r ../../lib/yarjuf -f JUnit -o results.xml`
-    Then the junit output reports one failing test with non printable characters filtered
-
   Scenario: One pending test
     Given a file named "spec/one_pending_test_spec.rb" with:
       """

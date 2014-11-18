@@ -19,15 +19,6 @@ Then /^the junit output reports one failing test$/ do
   expect(@results.at_xpath("/testsuites/@tests").value).to eq "1"
 end
 
-Then /^the junit output reports one failing test with non printable characters filtered$/ do
-  step 'I parse the junit results file'
-  expect(@results.at_xpath("/testsuites/@errors").value).to eq "0"
-  expect(@results.at_xpath("/testsuites/@failures").value).to eq "1"
-  expect(@results.at_xpath("/testsuites/@skipped").value).to eq "0"
-  expect(@results.at_xpath("/testsuites/@tests").value).to eq "1"
-  expect(@results.at_xpath("/testsuites//testsuite//testcase//failure").content).to include(%^expected: "fail"\n     got: "Non printable in response"^)
-end
-
 Then /^the junit output reports one pending test$/ do
   step 'I parse the junit results file'
   expect(@results.at_xpath("/testsuites/@errors").value).to eq "0"
