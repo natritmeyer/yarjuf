@@ -110,8 +110,13 @@ class JUnit
     failure_message = "failed #{test.metadata[:full_description]}"
 
     @builder.failure(:message => failure_message, :type => 'failed') do
-      @builder.cdata!(failure_details_for(test))
+      @builder.cdata!(filter_unsupported(failure_details_for(test)))
     end
   end
 
+  def filter_unsupported(str)
+    str.gsub!(/[^[:print:]\t\n]/, '') if str
+
+    str
+  end
 end
