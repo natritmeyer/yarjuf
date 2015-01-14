@@ -75,6 +75,7 @@ class JUnit
     skipped_count = JUnit.count_in_suite_of_type(tests, :pending)
 
     @builder.testsuite(
+      :location => tests.first.example_group.location,
       :name     => suite_name,
       :tests    => tests.size,
       :errors   => 0,
@@ -95,8 +96,9 @@ class JUnit
     test_name      = test.metadata[:full_description]
     execution_time = test.metadata[:execution_result].run_time
     test_status    = test.metadata[:execution_result].status
+    location       = test.location
 
-    @builder.testcase(:name => test_name, :time => execution_time) do
+    @builder.testcase(:name => test_name, :time => execution_time, :location => location) do
       case test_status
         when :pending
           @builder.skipped
