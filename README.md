@@ -89,11 +89,8 @@ That will write out JUnit formatted results to a file called
 
 #### Jenkins integration
 
-To use yarjuf with Jenkins(/Hudson), simply tick the 'Publish JUnit test
-result report' option in the Jenkins task configuration page and in the
-'Test report XMLs' field specify the file name that you expect the JUnit
-formatted results to be written to, ie: the file path and name specified
-in the `-o` option above.
+To use yarjuf with Jenkins(/Hudson), navigate to your project page on Jenkins and click configure.  Under 'Post Build Actions' add a new post build action and select 'Publish JUnit test result report'.  Finally in the
+'Test report XMLs' field specify the file name that you expect the JUnit formatted results to be written to, ie: the file path and name specified in the `-o` option above.
 
 ## Acknowledgements
 
