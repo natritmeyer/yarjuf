@@ -1,6 +1,8 @@
+require "nokogiri"
+
 # An RSpec formatter for generating results in JUnit format
 class JUnit
-  RSpec::Core::Formatters.register self, :example_passed, :example_failed, :example_pending, :dump_summary
+  RSpec::Core::Formatters.register self, :example_passed, :example_failed, :example_pending, :dump_summary, :seed
 
   def initialize(output)
     @output             = output
@@ -22,7 +24,18 @@ class JUnit
 
   def dump_summary(summary)
     build_results(summary.duration, summary.examples.size, summary.failed_examples.size, summary.pending_examples.size)
-    @output.puts @builder.target!
+  end
+
+  def seed(seed_notification)
+    xml_output = @builder.target!
+
+    if seed_notification.seed_used?
+      doc = Nokogiri::XML xml_output
+      doc.root && doc.root["seed"] = seed_notification.seed
+      xml_output = doc.to_xml
+    end
+
+    @output.puts xml_output
   end
 
   protected
