@@ -76,3 +76,15 @@ Feature: Suite Summary
     When I run `rspec spec/suite_timestamp_spec.rb -r ../../lib/yarjuf -f JUnit -o results.xml`
     Then the junit output testsuite element contains a timestamp
 
+  Scenario: Test suite seed present if seed is used
+    Given a file named "spec/suite_seed_spec.rb" with:
+      """
+      describe "suite element seed" do
+        it "should contain a seed" do
+          expect(1).to eq 1
+        end
+      end
+      """
+    When I run `rspec spec/suite_seed_spec.rb -r ../../lib/yarjuf -f JUnit -o results.xml --order random`
+    Then the junit output testsuite element contains a seed
+
