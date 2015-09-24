@@ -26,3 +26,11 @@ Then /^the junit output file contains a failing test$/ do
   expect(@results.at_xpath("/testsuites/testsuite/testcase/failure").text).to match /expected.*2.*got.*1.*using.*==.*spec\/failing_test_spec\.rb:3/m
 end
 
+Then /^the junit output file contains a failing test with the exception message$/ do
+  step 'I parse the junit results file'
+  expect(@results.at_xpath("/testsuites/testsuite/testcase/failure")).to_not be_nil
+  expect(@results.at_xpath("/testsuites/testsuite/testcase/failure/@message").value).to eq "failed suite one raises an exception"
+  expect(@results.at_xpath("/testsuites/testsuite/testcase/failure/@type").value).to eq "failed"
+  expect(@results.at_xpath("/testsuites/testsuite/testcase/failure").text).to match /Test exception/m
+end
+

@@ -72,3 +72,16 @@ Feature: Individual Tests
     When I run `rspec spec/failing_test_spec.rb -r ../../lib/yarjuf -f JUnit -o results.xml`
     Then the junit output file contains a failing test
 
+  Scenario: Failing test with nil backtrace
+    Given a file named "spec/failing_test_spec.rb" with:
+      """
+      describe "suite one" do
+        it "raises an exception" do
+          class E < Exception; def backtrace; nil; end; end
+          raise E.new('Test exception')
+        end
+      end
+      """
+    When I run `rspec spec/failing_test_spec.rb -r ../../lib/yarjuf -f JUnit -o results.xml`
+    Then the junit output file contains a failing test with the exception message
+
